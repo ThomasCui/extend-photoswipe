@@ -1,78 +1,313 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
+<!-- saved from url=(0105)http://www.17sucai.com/preview/153526/2016-04-21/%E5%BE%AE%E4%BF%A1%E6%9C%8B%E5%8F%8B%E5%9C%88/index.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
-	<title>PhotoSwipe Demo</title>
-	<link href="https://cdn.bootcss.com/photoswipe/4.1.2/photoswipe.min.css" rel="stylesheet">
-	<link href="https://cdn.bootcss.com/photoswipe/4.1.2/default-skin/default-skin.min.css" rel="stylesheet">
+    <title>PhotoSwipe Demo</title>
+    <link href="https://cdn.bootcss.com/photoswipe/4.1.2/photoswipe.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/photoswipe/4.1.2/default-skin/default-skin.min.css" rel="stylesheet">
 
-	<style type="text/css" media="screen">
-		h3{
-			text-align: center;
-		}
-		.enlarge-image{
-            width:32.4%;
-            padding:0px;
-            vertical-align: middle;
+    <link rel="stylesheet" href="./我的朋友圈_files/app.css">
+
+
+	<script src="https://cdn.bootcss.com/photoswipe/4.1.2/photoswipe.min.js"></script>
+	<script src="https://cdn.bootcss.com/photoswipe/4.1.2/photoswipe-ui-default.min.js"></script>
+	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+	<script src="enlarge-image.js"></script>
+    <script src="./我的朋友圈_files/jquery.min.js.下载" type="text/javascript"></script>
+
+    <style type="text/css">
+        * {cursor: pointer;}
+        .weui_mask_transition {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: rgba(0, 0, 0, 0);
+            -webkit-transition: background .3s;
+            transition: background .3s;
         }
-        .imgs{
-        	border: 1px solid blue;
+        .weui_fade_toggle {
+            background: rgba(0, 0, 0, 0.6);
         }
-        strong {
-        	color: blue;
+        .weui_actionsheet {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            -webkit-transform: translate(0, 100%);
+            -ms-transform: translate(0, 100%);
+            transform: translate(0, 100%);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            z-index: 2;
+            width: 100%;
+            background-color: #EFEFF4;
+            -webkit-transition: -webkit-transform .3s;
+            transition: transform .3s;
         }
-        i{
-        	color: red;
+        .weui_actionsheet_toggle {
+            -webkit-transform: translate(0, 0);
+            -ms-transform: translate(0, 0);
+            transform: translate(0, 0);
         }
-	</style>
+        .weui_actionsheet_menu {
+            background-color: #FFFFFF;
+        }
+        .weui_actionsheet_cell:before {
+            content: " ";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 1px;
+            border-top: 1px solid #D9D9D9;
+            -webkit-transform-origin: 0 0;
+            -ms-transform-origin: 0 0;
+            transform-origin: 0 0;
+            -webkit-transform: scaleY(0.5);
+            -ms-transform: scaleY(0.5);
+            transform: scaleY(0.5);
+        }
+        .weui_actionsheet_cell:first-child:before {
+            display: none;
+        }
+        .weui_actionsheet_cell {
+            position: relative;
+            padding: 10px 0;
+            text-align: center;
+            font-size: 18px;
+        }
+        .weui_actionsheet_cell.title {
+            color: #999;
+        }
+        .weui_actionsheet_action {
+            margin-top: 6px;
+            background-color: #FFFFFF;
+        }
+
+    </style>
+
 </head>
 <body>
-
-<h3>图片点击放大</h3>
-
-<div>
-	基于 jQuery 和 PhotoSwipe 插件。
-	<p>
-		这里主要给出一个js文件，做到<i>仿朋友圈的图片点击放大显示</i>。资源地址:
-	</p>
-	<p>
-		PhotoSwipe 本身是不依赖任何 js 库的，它的使用说明官方也有，只需要给出每个 item 放大之后的 路径、宽、高即可。
-	</p>
-	<p>
-		在使用过程中发现，item 的路径是很好指定的，可以放在元素的任何位置。而放大之后图片的宽高就不那么随意了。
-	</p>
-	<p>
-		要考虑到：图片是否是等宽高展示？图片是同步还是异步被加载出来？图片是否除了缩略图外也给出了原图地址？
-	</p>
-	<p>
-		1. 当所有的图片放大之后都是固定宽高时，这样的是很好做处理的，别人也在 PhotoSwipe 的基础上做了拓展，他的该页面加载比较慢，在加载出来前请勿操作。<br>
-		例如：github地址：<a href="https://github.com/datenstrom/yellow-plugins/tree/master/gallery">Yellow CMS plugin</a> <br>
-		Demo: <a href="https://developers.datenstrom.se/plugins/gallery">Yellow CMS Demo</a> <br>
-	</p>
-	<p>
-		2. 但是当所有图片都不是等宽高时（例如：<strong>朋友圈</strong>），每个人上传的每张图片的宽高都可能不相同，item 的宽高也就需要设置成不相同的，并且是要根据<strong>原图</strong>而不是缩略图进行设置。
-	</p>
+<p style="font-size: 20px; color: red; text-align: center; margin-top: 20px;">高仿朋友圈点击图片放大，下滑</p>
+<div style="padding: 10px 5px;">
+    基于 jQuery 和 PhotoSwipe 插件。
+    <p>
+        这里主要给出一个js文件，做到<i>仿朋友圈的图片点击放大显示</i>。<br>
+        资源地址: <a href="https://github.com/ThomasCui/extend-photoswipe">GitHub地址</a> <br>
+        Demo地址：<a href="http://thomascui.cn/blog/image/photoswipe/index.html">仿朋友圈点击放大功能</a> <br>
+        QuickStudy地址：<a href="http://thomascui.cn/blog/image/photoswipe/demo.html">快速上手</a> 
+    </p>
+    <p>
+        PhotoSwipe 本身是不依赖任何 js 库的，它的使用说明官方也有，只需要给出每个 item 放大之后的 路径、宽、高即可。
+    </p>
+    <p>
+        在使用过程中发现，item 的路径是很好指定的，可以放在元素的任何位置。而放大之后图片的宽高就不那么随意了。
+    </p>
+    <p>
+        要考虑到：图片是否是等宽高展示？图片是同步还是异步被加载出来？图片是否除了缩略图外也给出了原图地址？
+    </p>
+    <p>
+        1. 当所有的图片放大之后都是固定宽高时，这样的是很好做处理的，别人也在 PhotoSwipe 的基础上做了拓展，他的该页面加载比较慢，在加载出来前请勿操作。<br>
+        例如：github地址：<a href="https://github.com/datenstrom/yellow-plugins/tree/master/gallery">Yellow CMS plugin</a> <br>
+        Demo: <a href="https://developers.datenstrom.se/plugins/gallery">Yellow CMS Demo</a> <br>
+    </p>
+    <p>
+        2. 但是当所有图片都不是等宽高时（例如：<strong>朋友圈</strong>），每个人上传的每张图片的宽高都可能不相同，item 的宽高也就需要设置成不相同的，并且是要根据<strong>原图</strong>而不是缩略图进行设置。
+    </p>
 </div>
+<br>
+<hr>
+<div id="main">
+    <div id="list">
+        <ul>
+            <li>
+                <div class="po-avt-wrap">
+                    <img class="po-avt data-avt" src="./我的朋友圈_files/0.jpg">
+                </div>
+                <div class="po-cmt">
+                    <div class="po-hd">
+                        <p class="po-name"><span class="data-name">万虎科技~贾素杰</span></p>
+                        <div class="post">
+                            <p>大家好，听说国内冻成狗🐶？我这边还挺热～</p>
+                            <p>
+                                <img class="list-img" data-img-index='0' src="./我的朋友圈_files/jt1.jpg" style="height: 80px;">
+                                <img class="list-img" data-img-index='1' src="./我的朋友圈_files/yt3.jpg" style="height: 80px;">
+                                <img class="list-img data-avt" data-img-index='2' src="./我的朋友圈_files/0.jpg" style="height: 80px;">
+                            </p>
+                        </div>
+                        <p class="time">刚刚</p><img class="c-icon" src="./我的朋友圈_files/c.png">
+                    </div>
+                    <div class="r"></div>
+                    <div class="cmt-wrap">
+                        <div class="like"><img src="./我的朋友圈_files/l.png">陈冠希，杨幂，王思聪，陈赫，刘德华，马云...</div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="po-avt-wrap">
+                    <img class="po-avt" src="./我的朋友圈_files/n5.jpg">
+                </div>
+                <div class="po-cmt">
+                    <div class="po-hd">
+                        <p class="po-name">
+                            王思聪
+                        </p>
+                        <div class="post">
+                            <p>
+                                那一年这兄弟三人发誓一定要出人头地
+                                <br>
+                                以后有福同享有难同当
+                                <br>
+                                如今：
+                                <br>
+                                大哥只手遮天万人之上
+                                <br>
+                                二哥黄金万两富甲一方
+                                <br>
+                                三弟淡泊名利为人低调
+                            </p>
+                            <img class="list-img" data-img-index='0' src="./我的朋友圈_files/xa1.jpg" style="height: 80px;">
+                            <img class="list-img" data-img-index='1' src="./我的朋友圈_files/ma1.jpg" style="height: 80px;">
+                            <img class="data-avt list-img" data-img-index='2' src="./我的朋友圈_files/0.jpg" style="height: 80px;">
+                        </div>
+                        <p class="time">
+                            1分钟前
+                        </p>
+                        <img class="c-icon" src="./我的朋友圈_files/c.png">
+                    </div>
+                    <div class="r">
+                    </div>
+                    <div class="cmt-wrap">
+                        <div class="like">
+                            <img src="./我的朋友圈_files/l.png">
+                            鹿晗，林更新，杨幂，angelababy，范冰冰...
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="po-avt-wrap">
+                    <img class="po-avt" src="./我的朋友圈_files/a2.jpg">
+                </div>
+                <div class="po-cmt">
+                    <div class="po-hd">
+                        <p class="po-name">
+                            周杰伦
+                        </p>
+                        <div class="post">
+                            <p>
+                                <b class="data-name">万虎科技~贾素杰</b>
+                                ，决战夜你要加油！我们哎哟不错战队是最屌的！
+                            </p>
+                            <img class="list-img" data-img-index='0' src="./我的朋友圈_files/c2.jpg" style="height: 80px;">
+                            <img class="data-avt list-img" data-img-index='1' src="./我的朋友圈_files/0.jpg" style="height: 80px;">
+                        </div>
+                        <p class="time">
+                            2分钟前
+                        </p>
+                        <img class="c-icon" src="./我的朋友圈_files/c.png">
+                    </div>
+                    <div class="r">
+                    </div>
+                    <div class="cmt-wrap">
+                        <div class="like">
+                            <img src="./我的朋友圈_files/l.png">
+                            汪峰，那英，庾澄庆
+                        </div>
+                        <div class="cmt-list">
+                            <p>
+                                <span class="data-name">万虎科技~贾素杰</span>
+                                        <span>
+                                            ：
+                                        </span>
+                                杰伦老师，决战夜小公举会来吗。~
+                            </p>
+                            <p>
+                                        <span>
+                                            周杰伦
+                                        </span>
+                                回复
+                                <span class="data-name">万虎科技~贾素杰</span>
+                                        <span>
+                                            ：
+                                        </span>
+                                你拿冠军了，我让你当小公举的小王纸。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
 
-<div class="imgs">
-    <img class="enlarge-image" data-img-index="0" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1506093826245&di=e7b4f198cb26a221ab4dbc688472794b&imgtype=0&src=http%3A%2F%2Fsub1.kevinchisholm.com%2Fblog%2Fimages%2Fjavascript-logo.png">
-    <img class="largeimage" style="display: none;" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1506688607&di=ab150d2422b2cb6717f5273e43226bbd&imgtype=jpg&er=1&src=http%3A%2F%2Fcpic7.edushi.com%2Fcn%2Fzixun%2Fzh-chs%2F2015-05%2F16%2F20150516_193410_132.jpg">
-    <img class="enlarge-image" data-img-index="1" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1506688667&di=7b7005934699efc231e4bb40b5cb9a7c&imgtype=jpg&er=1&src=http%3A%2F%2Fhiphotos.baidu.com%2Fdoc%2Fpic%2Fitem%2F43a7d933c895d143c6aaa6a57af082025baf0753.jpg">
-    <img class="largeimage" style="display: none;" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1506094016593&di=f68d757219e58500d9a8631e2dfddcd6&imgtype=0&src=http%3A%2F%2Fwww.php100.com%2Fuploadfile%2F2014%2F0909%2F20140909100301276.jpg">
-    <img class="enlarge-image" data-img-index="2" src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=642710517,1633352972&fm=27&gp=0.jpg">
-    <img class="largeimage" style="display: none;" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1506094618470&di=120a429f2755b42ddc7475b5b6d53fc7&imgtype=0&src=http%3A%2F%2Fwww.qingpingshan.com%2Fuploads%2Fallimg%2F161211%2F1126443626-0.jpg">
 </div>
-
-
-<script src="https://cdn.bootcss.com/photoswipe/4.1.2/photoswipe.min.js"></script>
-<script src="https://cdn.bootcss.com/photoswipe/4.1.2/photoswipe-ui-default.min.js"></script>
-<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-<script src="enlarge-image.js"></script>
 <script>
-	window.onload=function(){
-		myPhotoSwipe(".imgs", '.enlarge-image', '.largeimage');
-	}
 </script>
-</body>
-</html>
+
+
+<script>
+    function gotoplay(scene) {
+        var gourl = "/act/pengYouQuan/my.php?sv=" + scene;
+        location.href = gourl;
+    }
+    function safetostring(str) {
+        return String(str).replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'");
+    }
+
+    //$("#list").html($("#scene").html());
+
+    setTimeout(function () {
+        // $(".data-name").text(safetostring(nickname));
+        //$(".data-avt").attr("src", headimgurl);
+        var cw = $('.list-img').width();
+        $('.list-img').css({'height': cw + 'px'});
+    }, 0);
+
+    $(window).resize(function () {
+        var cw = $('.list-img').width();
+        $('.list-img').css({'height': cw + 'px'});
+    });
+
+
+    $(document.body).show();
+
+
+    function hideActionSheet(weuiActionsheet, mask) {
+        weuiActionsheet.removeClass('weui_actionsheet_toggle');
+        mask.removeClass('weui_fade_toggle');
+        weuiActionsheet.on('transitionend', function () {
+            mask.hide();
+        }).on('webkitTransitionEnd', function () {
+            mask.hide();
+        })
+    }
+    function showActionSheet() {
+        var mask = $('#mask');
+        var weuiActionsheet = $('#weui_actionsheet');
+        weuiActionsheet.addClass('weui_actionsheet_toggle');
+        mask.show().addClass('weui_fade_toggle').click(function () {
+            hideActionSheet(weuiActionsheet, mask);
+        });
+        $('#actionsheet_cancel').click(function () {
+            hideActionSheet(weuiActionsheet, mask);
+        });
+        weuiActionsheet.unbind('transitionend').unbind('webkitTransitionEnd');
+    }
+    $('#list').not(".noplayimg").on('click', function () {
+        showActionSheet();
+    });
+    $('img').not(".noplayimg").on('click', function (e) {
+        showActionSheet();
+    });
+    $('.play_pyq').on('click', function () {
+        var scene = $(this).data("scene");
+        gotoplay(scene);
+    });
+
+    myPhotoSwipe(".post", '.list-img');
+</script>
+
+</body></html>

@@ -71,7 +71,11 @@
 		}
 		
 		// 获得放大图片后的各种属性
-		var items = parseThumbnailElements(imgs, $ele.find(linkSecletor) || imgs);
+		var largeImages = $ele.find(linkSecletor);
+		if(largeImages || largeImages.length == 0) {
+			largeImages = imgs;
+		}
+		var items = parseThumbnailElements(imgs, largeImages);
 		
 		var pswpElement = document.querySelectorAll('.pswp')[0];
 		

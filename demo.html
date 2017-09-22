@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+	<title>PhotoSwipe Demo</title>
+	<link href="https://cdn.bootcss.com/photoswipe/4.1.2/photoswipe.min.css" rel="stylesheet">
+	<link href="https://cdn.bootcss.com/photoswipe/4.1.2/default-skin/default-skin.min.css" rel="stylesheet">
+
+	<style type="text/css" media="screen">
+		h3{
+			text-align: center;
+		}
+		.enlarge-image{
+            width:32.4%;
+            padding:0px;
+            vertical-align: middle;
+        }
+        .imgs{
+        	border: 1px solid blue;
+        }
+        strong {
+        	color: blue;
+        }
+        i{
+        	color: red;
+        }
+	</style>
+</head>
+<body>
+
+<h3>图片点击放大</h3>
+
+<div>
+	基于 jQuery 和 PhotoSwipe 插件。
+	<p>使用步骤：</p>
+	<p>1. 引入官方css资源</p>
+	<p>2. 引入官方JavaScript 资源</p>
+	<p>3. 引入我提供的enlarge-image资源</p>
+	<p>4. html 的 img 部分加入属性 data-img-index，每一个集合从0开始递增</p>
+	<p>5. js 执行方法：myPhotoSwipe(".imgs", '.enlarge-image', '.largeimage')</p>
+</div>
+
+<div class="imgs">
+    <img class="enlarge-image" data-img-index="0" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1506093826245&di=e7b4f198cb26a221ab4dbc688472794b&imgtype=0&src=http%3A%2F%2Fsub1.kevinchisholm.com%2Fblog%2Fimages%2Fjavascript-logo.png">
+    <img class="largeimage" style="display: none;" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1506688607&di=ab150d2422b2cb6717f5273e43226bbd&imgtype=jpg&er=1&src=http%3A%2F%2Fcpic7.edushi.com%2Fcn%2Fzixun%2Fzh-chs%2F2015-05%2F16%2F20150516_193410_132.jpg">
+    <img class="enlarge-image" data-img-index="1" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1506688667&di=7b7005934699efc231e4bb40b5cb9a7c&imgtype=jpg&er=1&src=http%3A%2F%2Fhiphotos.baidu.com%2Fdoc%2Fpic%2Fitem%2F43a7d933c895d143c6aaa6a57af082025baf0753.jpg">
+    <img class="largeimage" style="display: none;" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1506094016593&di=f68d757219e58500d9a8631e2dfddcd6&imgtype=0&src=http%3A%2F%2Fwww.php100.com%2Fuploadfile%2F2014%2F0909%2F20140909100301276.jpg">
+    <img class="enlarge-image" data-img-index="2" src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=642710517,1633352972&fm=27&gp=0.jpg">
+    <img class="largeimage" style="display: none;" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1506094618470&di=120a429f2755b42ddc7475b5b6d53fc7&imgtype=0&src=http%3A%2F%2Fwww.qingpingshan.com%2Fuploads%2Fallimg%2F161211%2F1126443626-0.jpg">
+</div>
+
+
+<script src="https://cdn.bootcss.com/photoswipe/4.1.2/photoswipe.min.js"></script>
+<script src="https://cdn.bootcss.com/photoswipe/4.1.2/photoswipe-ui-default.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="enlarge-image.js"></script>
+<script>
+	window.onload=function(){
+		myPhotoSwipe(".imgs", '.enlarge-image', '.largeimage');
+	}
+</script>
+</body>
+</html>
